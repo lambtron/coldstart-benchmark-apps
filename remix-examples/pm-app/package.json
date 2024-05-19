@@ -1,0 +1,63 @@
+{
+  "private": true,
+  "sideEffects": false,
+  "scripts": {
+    "build": "run-s \"build:*\"",
+    "build:css": "npm run generate:css -- --env production",
+    "build:remix": "remix build",
+    "db:check": "docker ps",
+    "db:reset": "prisma migrate reset --force",
+    "db:start": "docker compose up -d",
+    "db:stop": "docker compose down",
+    "db:update": "prisma migrate dev",
+    "deploy": "flyctl deploy",
+    "dev": "npm run db:start && pm2-dev pm2.config.js",
+    "dev:css": "npm run generate:css -- --watch",
+    "dev:remix": "remix dev",
+    "dev:server": "node server/index.js",
+    "generate:css": "postcss app/styles --base app/styles --dir app/dist/styles",
+    "start": "node server/index.js",
+    "typecheck": "tsc"
+  },
+  "dependencies": {
+    "@prisma/client": "^3.10.0",
+    "@reach/combobox": "^0.16.5",
+    "@reach/dialog": "^0.16.2",
+    "@reach/menu-button": "^0.16.2",
+    "@remix-run/node": "^1.19.3",
+    "@remix-run/react": "^1.19.3",
+    "@remix-run/serve": "^1.19.3",
+    "bcrypt": "^5.0.1",
+    "clsx": "^1.1.1",
+    "isbot": "^3.6.5",
+    "match-sorter": "^6.3.1",
+    "prisma": "^3.10.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "validator": "^13.7.0"
+  },
+  "devDependencies": {
+    "@remix-run/dev": "^1.19.3",
+    "@remix-run/eslint-config": "^1.19.3",
+    "@remix-run/express": "^1.19.3",
+    "@types/bcrypt": "^5.0.0",
+    "@types/express": "^4.17.13",
+    "@types/react": "^18.0.25",
+    "@types/react-dom": "^18.0.8",
+    "@types/validator": "^13.7.1",
+    "dotenv": "^10.0.0",
+    "eslint": "^8.27.0",
+    "npm-run-all": "^4.1.5",
+    "pm2": "5.2.0",
+    "postcss": "^8.4.7",
+    "postcss-100vh-fix": "1.0.2",
+    "postcss-cli": "^9.1.0",
+    "postcss-focus-visible": "^6.0.4",
+    "postcss-import": "^14.0.2",
+    "postcss-preset-env": "^7.4.2",
+    "typescript": "^4.8.4"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}
