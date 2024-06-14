@@ -38,7 +38,7 @@ fastify.post("/shortUrls", async (req, res) => {
 
 fastify.get("/:shortUrl", async (req, res) => {
   const urlObject = cache.getKey(req.params.shortUrl);
-  if (urlObject === null) return res.sendStatus(404);
+  if (urlObject == null) return res.sendStatus(404);
   urlObject.clicks++;
   cache.setKey(urlObject.short, urlObject);
   cache.save(true);
