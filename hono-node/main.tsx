@@ -1,5 +1,4 @@
 import { Hono } from "hono";
-import { jsx } from "hono/jsx";
 import { serve } from "@hono/node-server";
 import flatCache from "flat-cache";
 import { nanoid } from "nanoid";
@@ -89,7 +88,7 @@ app.post("/shortUrls", async (c) => {
 
 app.get("/:shortUrl", async (c) => {
   const urlObject = cache.getKey(c.req.param("shortUrl"));
-  if (urlObject === null) return c.notFound();
+  if (urlObject == null) return c.notFound();
   urlObject.clicks++;
   cache.setKey(urlObject.short, urlObject);
   cache.save(true);
